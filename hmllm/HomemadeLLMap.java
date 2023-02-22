@@ -14,7 +14,19 @@ import java.util.Iterator;
  */
 
 public class HomemadeLLMap implements HomemadeMap {
-
+	
+    /**
+     * The first Node in this list.
+     */
+    private Node head;
+    
+    /**
+     * Constructor.
+     * POSTCONDITION: This list is empty.
+     */
+    public HomemadeLLMap() {
+    	head = null;
+    }
 	
     /**
      * Test whether an association exists for this key.
@@ -22,7 +34,14 @@ public class HomemadeLLMap implements HomemadeMap {
      * @return true if there is an association for this key, false otherwise
      */
     public boolean containsKey(String key) {
-    	return true;
+    	Node place = head;  // the node we are looking at       
+    	while(place != null) {
+    	    if(place.datum() == item){
+    	    	return true;
+    	    }
+    	    place = place.next();
+    	}
+    	return false;
     }
    
 
@@ -32,6 +51,7 @@ public class HomemadeLLMap implements HomemadeMap {
      * @param val The value to which this key is associated
      */
     public void put(String key, String val) {
+    	head = new Node(key, val, head);
     }  
 
     /**
@@ -40,7 +60,14 @@ public class HomemadeLLMap implements HomemadeMap {
      * @return The value associated with this key, null if none exists
      */
     public String get(String key) {
-    	return null;
+    	Node place = head;  // the node we are looking at       
+    	while(place != null) {
+    	    if(place.datum() == item){
+    	    	return place.datum();
+    	    }
+    	    place = place.next();
+    	}
+    	return "Not Available";
     }
 
     /**
