@@ -1,6 +1,4 @@
-/**
- * 
- */
+package hmllm;
 
 /**
  * @author abrahamaustin/In-class example
@@ -8,9 +6,9 @@
  */
 public class Node {
 	 /**
-     * The payload for this node.  (Note that it is immutable.)
+     * The value for this node.  (Note that it is immutable.)
      */
-    private final String datum;
+    private final String value;
     
 	 /**
      * The key for this node.  (Note that it is immutable.)
@@ -23,23 +21,23 @@ public class Node {
 
     /**
      * Constructor.
-     * @param datum The payload for this INode.
+     * @param value The value for this Node.
      * @param next  The node that follows this one.
      */
-    public Node(String datum, String key, INode next) {
+    public Node(String key, String value, Node next) {
     	this.key = key;
-        this.datum = datum;
+        this.value = value;
         this.next = next;
     }
 
     /* accessor methods */
-    public String datum() { return datum; }
+    public String value() { return value; }
     public String key() {return key;}
-    public INode next() { return next; }
+    public Node next() { return next; }
     
     /* mutator method */
-    public void setNext(INode next) { this.next = next; }
+    public void setNext(Node next) { this.next = next; }
 }
 
 
-}
+

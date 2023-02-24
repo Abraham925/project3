@@ -17,7 +17,7 @@ import java.util.Iterator;
 
 
 
-public interface HomemadeMap {
+public interface HomemadeMap{
 
     
     /**

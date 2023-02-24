@@ -34,14 +34,13 @@ public class HomemadeLLMap implements HomemadeMap {
      * @return true if there is an association for this key, false otherwise
      */
     public boolean containsKey(String key) {
-    	Node place = head;  // the node we are looking at       
-    	while(place != null) {
-    	    if(place.datum() == item){
-    	    	return true;
-    	    }
-    	    place = place.next();
+    	if(helper(key)!=null) {
+    		return true;
     	}
-    	return false;
+    	else {
+    		return false;
+    	}
+
     }
    
 
@@ -50,8 +49,13 @@ public class HomemadeLLMap implements HomemadeMap {
      * @param key The key to this association
      * @param val The value to which this key is associated
      */
-    public void put(String key, String val) {
-    	head = new Node(key, val, head);
+    public void put(String key, String value) {
+    	if(helper(key)==null) {
+    		head = new Node(key, value, head);
+    	}
+    	else if(helper(key).value().equals(value) == false){ 	
+    		head = new Node(key, value, head);
+    	}
     }  
 
     /**
@@ -60,14 +64,12 @@ public class HomemadeLLMap implements HomemadeMap {
      * @return The value associated with this key, null if none exists
      */
     public String get(String key) {
-    	Node place = head;  // the node we are looking at       
-    	while(place != null) {
-    	    if(place.datum() == item){
-    	    	return place.datum();
-    	    }
-    	    place = place.next();
+    	if(helper(key)!=null) {
+    		return helper(key).value();
     	}
-    	return "Not Available";
+    	else {
+    		return null;
+    	}
     }
 
     /**
@@ -75,6 +77,7 @@ public class HomemadeLLMap implements HomemadeMap {
      * @return An iterator over the set of keys.
      */
     public Iterator<String> keyIterator() {
+    	MapIterator x = new MapIterator();
     	return null;
     }
 
@@ -84,8 +87,39 @@ public class HomemadeLLMap implements HomemadeMap {
      * @param key The key to remove
      */   
     public void remove(String key) {
+    	Node place = head;   
+    	Node previous = null; 
+    	
+    	while (place != null) {
+    	    if (place.key().equals(key)) {
+	    	    if(head.key().equals(key)){
+	    		    head = head.next();
+	    		}
+	    	    else{
+	    	         previous.setNext(place.next());
+	    		}
+    	
+	    	    return;
+    	    }
+    	    previous = place;
+    	    place = place.next();
+    	}
     }
-
+    
+    /**
+     * Helper method to iterate through the LinkedMap
+     */   
+    private Node helper(String key) {
+    	Node place = head; 
+    	while(place != null) {
+    	    if((place.key()).equals(key)){
+    	    	return place;
+    	    }
+    	    place = place.next();
+    	}
+    	return null;
+    	
+    }
 
 	
 }
