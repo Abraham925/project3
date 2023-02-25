@@ -8,9 +8,10 @@ import java.util.Iterator;
  * An implementation of the HomemadeMap class that uses
  * a completely-homemade linked list on the inside.
  * 
- * @author Thomas VanDrunen
+ * @author Thomas VanDrunen, Abraham Austin
  * CSCI 245, Wheaton College
  * June 30, 2014
+ * Feb 24, 2022
  */
 
 public class HomemadeLLMap implements HomemadeMap {
@@ -54,6 +55,7 @@ public class HomemadeLLMap implements HomemadeMap {
     		head = new Node(key, value, head);
     	}
     	else if(helper(key).value().equals(value) == false){ 	
+    		remove(helper(key).key());
     		head = new Node(key, value, head);
     	}
     }  
@@ -77,8 +79,8 @@ public class HomemadeLLMap implements HomemadeMap {
      * @return An iterator over the set of keys.
      */
     public Iterator<String> keyIterator() {
-    	MapIterator x = new MapIterator();
-    	return null;
+    	MapIterator x = new MapIterator(head);
+    	return x;
     }
 
     
@@ -94,6 +96,7 @@ public class HomemadeLLMap implements HomemadeMap {
     	    if (place.key().equals(key)) {
 	    	    if(head.key().equals(key)){
 	    		    head = head.next();
+	    		    return;
 	    		}
 	    	    else{
 	    	         previous.setNext(place.next());

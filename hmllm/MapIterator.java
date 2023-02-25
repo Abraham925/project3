@@ -2,25 +2,40 @@ package hmllm;
 
 import java.util.Iterator;
 
-public class MapIterator implements Iterator<E> {
+/**
+ * @author abrahamaustin
+ *
+ */
 
-	@Override
-	public boolean hasNext() {
-		// TODO Auto-generated method stub
-    	Node place = head; 
-    	while(place != null) {
-    		place = place.next();
-    	}
-    	return false;
+public class MapIterator implements Iterator<String> {
+	
+	private Node head;// first link in the linked map
+	/**
+	 * constructor
+	 * @param head
+	 */
+	public MapIterator(Node head) {
+		this.head = head;
 	}
 
 	@Override
-	public E next() {
-		if(hasNext()) {
-	
+	/**
+	 * checks if head is null
+	 * returns if head is null
+	 */
+	public boolean hasNext() {
+    	return head != null;
+	}
 
-		}
-		return null;
+	@Override
+	/**
+	 * returns the head value and iterates to the next link
+	 */
+	public String next() {
+		String place = head.key(); 
+		head = head.next();
+		return place;
+		
 	}
 
 }

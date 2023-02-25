@@ -1,7 +1,7 @@
 package hmllm;
 
 /**
- * @author abrahamaustin/In-class example
+ * @author abrahamaustin
  *
  */
 public class Node {
